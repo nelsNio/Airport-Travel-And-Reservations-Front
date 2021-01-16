@@ -1,0 +1,106 @@
+<div class="limiter animated fadeInRight">
+        <div class="container-login100">
+            <div class="wrap-register100 p-t-50 p-b-90">
+
+                    <div class="login100-form validate-form flex-sb flex-w">
+                    <span class="login100-form-title p-b-50">
+                        Bienvenido a tu plataforma de reservas !
+                    </span>
+                        <div class="alert alert-success" role="alert">
+                            <strong>
+                            <p>Aquí econtrarás los siguientes servicios.</p></strong>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>●	Consulta de vuelos</strong>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>●	Reservación  de vuelos</strong>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>●	Estado  de vuelos</strong>
+                        </div>
+                    </div>
+
+
+            </div>
+
+
+            <div class="wrap-register100 p-t-50 p-b-90">
+                <form (ngSubmit)="onSubmit(f)"
+                      #f="ngForm"
+                  class="login100-form validate-form flex-sb flex-w">
+
+                    <span class="login100-form-title p-b-51">
+                        Registrate.
+                    </span>
+
+                    <span class="text-danger" *ngIf="f.submitted && f.controls['email'].errors">El correo es obligatorio</span>
+                    <div class="wrap-input100 m-b-16">
+                        <input class="input100"
+                               type="email"
+                               name="email"
+                               [(ngModel)]="usuario.email"
+                               required
+                               email
+                               placeholder="Email">
+
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="text-danger" *ngIf="f.submitted && f.controls['document'].errors">El Documento es obligatorio</span>
+                    <div class="wrap-input100 m-b-16">
+                        <input class="input100"
+                               type="number"
+                               name="document"
+                               [(ngModel)]="usuario.document"
+                               required
+                               placeholder="Documento de Identidad">
+
+                        <span class="focus-input100"></span>
+                    </div>
+
+                     <span class="text-danger" class="text-danger" *ngIf="f.submitted && f.controls['fullname'].errors">
+                         El nombre es obligatorio</span>
+                    <div class="wrap-input100 m-b-16">
+                        <input class="input100"
+                               type="text"
+                               name="fullname"
+                               [(ngModel)]="usuario.fullname"
+                               required
+                               placeholder="Nombre y apellidos">
+
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="text-danger" class="text-danger" *ngIf="f.submitted && f.controls['password'].errors">
+                        La contraseña debe de ser más de 6 letras</span>
+                    <div class="wrap-input100 m-b-16" data-validate = "Password is required">
+                        <input class="input100"
+                               type="password"
+                               name="password"
+                               [(ngModel)]="usuario.password"
+                               required
+                               placeholder="Password">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="flex-sb-m w-full p-t-3 p-b-24">
+
+                        <div>
+                            <a routerLink="/login" class="txt1">
+                                ¿Ya tienes cuenta? / Ingresar
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-17">
+                        <button class="login100-form-btn" type="submit">
+                            Crear cuenta
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
