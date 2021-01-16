@@ -10,14 +10,38 @@ import {FlightService} from '../../../services/flight/flight.service';
 export class FlightComponent implements OnInit {
 
   public flights:FligthModel[];
+  valueOrigin: string="";
+  valueDest: string="";
+
 
   constructor(private  fligthService:FlightService) {
-    this.loadFligths();
+
   }
 
   ngOnInit(): void {
     this.loadFligths();
   }
+
+  filterOrigin(){
+    if (this.valueOrigin.length==0){
+      this.loadFligths();
+    }else {
+    this.fligthService.filterByOrigin(this.valueOrigin).subscribe(res=>{
+      this.flights=res.body;
+    })
+    }
+  }
+  filterDest(){
+    if (this.valueDest.length==0){
+      this.loadFligths();
+    }else {
+
+    this.fligthService.filterByDest(this.valueDest).subscribe(res=>{
+      this.flights=res.body;
+    })
+    }
+  }
+
   loadFligths(){
     this.fligthService.allFlights().subscribe(res=>{
       this.flights=res.body;
