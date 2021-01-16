@@ -5,9 +5,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { LoginComponent } from './pages/login/login.component';
 import {AuthGuard} from "./guards/auth.guard";
+import {FlightComponent} from './pages/home/flight/flight.component';
+import {UserFlightComponent} from './pages/home/user-flight/user-flight.component';
+import {BookingComponent} from './pages/home/booking/booking.component';
 
 const routes: Routes = [
-  { path: 'home'    , component: HomeComponent, canActivate:[AuthGuard] },
+  { path: 'home'    , component: HomeComponent, canActivate:[AuthGuard] ,
+    children:[{path:'all-flights',component:FlightComponent},
+    {path:'user-flights',component:UserFlightComponent},
+    {path:'bookings',component:BookingComponent}
+    ]},
   { path: 'registro', component: RegistroComponent },
   { path: 'login'   , component: LoginComponent },
   { path: '**', redirectTo: 'registro' }

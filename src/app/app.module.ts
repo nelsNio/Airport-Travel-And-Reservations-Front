@@ -12,6 +12,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FlightComponent } from './pages/home/flight/flight.component';
+import { UserFlightComponent } from './pages/home/user-flight/user-flight.component';
+import { BookingComponent } from './pages/home/booking/booking.component';
 
 
 
@@ -20,7 +23,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     AppComponent,
     RegistroComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    FlightComponent,
+    UserFlightComponent,
+    BookingComponent
   ],
     imports: [
         BrowserModule,

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         }
         if(resp.data){
             Swal.close();
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/home/all-flights');
             this.authService.saveToken(resp.data.token);
         }else {
             Swal.close();
