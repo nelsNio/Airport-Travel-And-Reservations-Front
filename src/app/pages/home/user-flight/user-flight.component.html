@@ -1,1 +1,63 @@
-<p>user-flight works!</p>
+<br>
+<div class="card">
+    <div class="card-header">
+        <h2 class="col text-center"> <span class="badge badge-primary">Lista de Vuelos Programados </span>
+        </h2>
+
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+
+
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control"   [(ngModel)]="valueOrigin"
+                           (ngModelChange)="filterOrigin()"
+                           placeholder="Buscar por origen...">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control"   [(ngModel)]="valueDest"
+                           (ngModelChange)="filterDest()"
+                           placeholder="Busqueda por destino...">
+                </div>
+            </div>
+            <br>
+            <div class="col text-right">
+                <button routerLink="/home/rates" class="btn btn-primary">
+                    <i class="fa fa-plus"></i>
+                    Nueva Reserva
+                </button>
+            </div>
+        </div>
+
+        <h2></h2>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th scope="col">Origen</th>
+                <th scope="col">Destino</th>
+            </tr>
+            </thead>
+            <tbody *ngFor=" let fligth of flights">
+            <tr>
+                <th> <span class="badge badge-info">{{fligth.idflight}}</span></th>
+                <th>
+                    <span class="badge badge-primary">{{fligth.originName | titlecase}} </span></th>
+                <th><span class="badge badge-success">{{fligth.destinationName | titlecase}} </span></th>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <div *ngIf="!flights || flights.length==0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+            <h4 class="alert-heading">No hay registros</h4>
+            <p>
+                <i class="fa fa-exclamation fa-2x"></i>
+            </p>
+        </div>
+    </div>
+</div>

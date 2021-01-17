@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FlightComponent } from './pages/home/flight/flight.component';
 import { UserFlightComponent } from './pages/home/user-flight/user-flight.component';
 import { BookingComponent } from './pages/home/booking/booking.component';
+import { RatesComponent } from './pages/home/rates/rates.component';
 
 
 
@@ -26,7 +27,8 @@ import { BookingComponent } from './pages/home/booking/booking.component';
     LoginComponent,
     FlightComponent,
     UserFlightComponent,
-    BookingComponent
+    BookingComponent,
+    RatesComponent
   ],
     imports: [
         BrowserModule,

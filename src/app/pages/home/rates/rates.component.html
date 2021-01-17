@@ -1,0 +1,80 @@
+<br>
+<div class="card">
+    <div class="card-header">
+        <h2 class="col text-center"> <span class="badge badge-primary">Lista de Tarifas Disponibles </span>
+        </h2>
+
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+
+
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control"   [(ngModel)]="valueOrigin"
+                           (ngModelChange)="filterOrigin()"
+                           placeholder="Buscar por origen...">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control"   [(ngModel)]="valueDest"
+                           (ngModelChange)="filterDest()"
+                           placeholder="Busqueda por destino...">
+                </div>
+            </div>
+        </div>
+
+        <h2></h2>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th scope="col">Aerolinea</th>
+                <th scope="col">Origen</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Puestos Libres</th>
+                <th scope="col">Disponibilidad</th>
+                <th scope="col">Opciones</th>
+            </tr>
+            </thead>
+            <tbody *ngFor=" let rate of rates">
+            <tr>
+                <th> <span class="badge badge-info">{{rate.idrate}}</span></th>
+                <th>{{rate.name | titlecase}} </th>
+                <th><span class="badge badge-primary">{{rate.origin | titlecase}} </span></th>
+                <th><span class=" badge badge-success">{{rate.destination | titlecase}} </span></th>
+                <th><span class="badge badge-info">{{rate.date_schedule | date:'medium' }} </span></th>
+                <th><span class="badge badge-info">{{rate.price | currency}} </span></th>
+                <th><span class="badge badge-primary">{{rate.space_available }} </span></th>
+                <th>
+                    <span *ngIf="rate.status=='C'" class="badge badge-warning">Cancelado </span>
+                    <span *ngIf="rate.status=='E'" class="badge badge-default">Expirado </span>
+                    <span *ngIf="rate.status=='A'" class="badge badge-info">Activo </span>
+                </th>
+                <th>
+
+                        <span class="badge badge-primary" *ngIf="rate.status=='A'">
+                        <button  class="btn btn-primary " (click)="reserve(rate.idrate)">
+                            <i class="fa fa-plus"></i>
+                            Reservar
+                        </button>
+                        </span>
+                </th>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+        <div *ngIf="!rates || rates.length==0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+            <h4 class="alert-heading">No hay registros</h4>
+            <p>
+                <i class="fa fa-exclamation fa-2x"></i>
+            </p>
+        </div>
+    </div>
+</div>
