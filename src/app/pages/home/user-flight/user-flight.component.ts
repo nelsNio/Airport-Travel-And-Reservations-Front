@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FligthModel} from '../../../models/flight.models';
 import {FlightService} from '../../../services/flight/flight.service';
+import {RateModel} from '../../../models/rate.models';
+import {RateService} from '../../../services/rate/rate.service';
+import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-flight',
@@ -9,43 +13,45 @@ import {FlightService} from '../../../services/flight/flight.service';
 })
 export class UserFlightComponent implements OnInit {
 
-  public flights:FligthModel[];
+
+  public rates:RateModel[];
   valueOrigin: string="";
   valueDest: string="";
 
 
-  constructor(private  fligthService:FlightService) {
+  constructor(private  rateService:RateService,private router:Router) {
 
   }
 
   ngOnInit(): void {
-    this.loadFligths();
+    this.loadRates();
   }
 
   filterOrigin(){
     if (this.valueOrigin.length==0){
-      this.loadFligths();
+      this.loadRates();
     }else {
-      this.fligthService.filterByOrigin(this.valueOrigin).subscribe(res=>{
-        this.flights=res.body;
+      this.rateService.rtUserByOrigin(this.valueOrigin).subscribe(res=>{
+        this.rates=res.body;
       })
     }
   }
   filterDest(){
     if (this.valueDest.length==0){
-      this.loadFligths();
+      this.loadRates();
     }else {
 
-      this.fligthService.filterByDest(this.valueDest).subscribe(res=>{
-        this.flights=res.body;
+      this.rateService.rtUserByDest(this.valueDest).subscribe(res=>{
+        this.rates=res.body;
       })
     }
   }
 
-  loadFligths(){
-    this.fligthService.allFlights().subscribe(res=>{
-      this.flights=res.body;
+  loadRates(){
+    this.rateService.allRatesUser().subscribe(res=>{
+      this.rates=res.body;
     })
   }
-
 }
+
+

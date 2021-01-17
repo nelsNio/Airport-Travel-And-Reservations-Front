@@ -7,6 +7,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class RateService {
+  constructor(private http: HttpClient) { }
+
   reserveRate(idrate: number):Observable<any> {
     let headers = new HttpHeaders();
     let token= localStorage.getItem('token');
@@ -21,12 +23,45 @@ export class RateService {
     return this.http.get<any>(environment.urlApi+'rates/search/origin/'+valueOrigin,{observe:'response'})
   }
 
-  constructor(private http: HttpClient) { }
+  /**
+   * Buscar validando usuario
+   * @param valueDest
+   */
+  rtUserByDest(valueDest: string): Observable <any> {
+    let headers = new HttpHeaders();
+    let token= localStorage.getItem('token');
+    headers = headers.set('authorization', token)
+    return this.http.get<any>(environment.urlApi+'rates/user/search/destination/'+valueDest,{observe:'response',headers})
+  }
+
+  /**
+   * Buscar Validando user
+   * @param valueOrigin
+   */
+  rtUserByOrigin(valueOrigin: string) : Observable <any> {
+    let headers = new HttpHeaders();
+    let token= localStorage.getItem('token');
+    headers = headers.set('authorization', token)
+    return this.http.get<any>(environment.urlApi+'rates/user/search/origin/'+valueOrigin,{observe:'response',headers})
+  }
+
 
   /**
    * Get all rates
    */
   allRates(): Observable <any>{
-    return this.http.get<any>(environment.urlApi+'rates',{observe:'response'})
+    let headers = new HttpHeaders();
+    let token= localStorage.getItem('token');
+    headers = headers.set('authorization', token)
+    return this.http.get<any>(environment.urlApi+'rates',{observe:'response',headers})
+  }
+  /**
+   * Get all rates by user
+   */
+  allRatesUser(): Observable <any>{
+    let headers = new HttpHeaders();
+    let token= localStorage.getItem('token');
+    headers = headers.set('authorization', token)
+    return this.http.get<any>(environment.urlApi+'user/rates/',{observe:'response',headers})
   }
 }

@@ -72,8 +72,8 @@ export class RatesComponent implements OnInit {
   showErrReserve(){
     Swal.fire(
         'Error en reservación!',
-        "Ya hay un vuelo reservado previamente para la misma fecha",
-        'error'
+        "Ya tienes vuelo reservado previamente para la misma fecha",
+        'warning'
     )
 
   }

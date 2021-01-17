@@ -1,7 +1,7 @@
 <br>
 <div class="card">
     <div class="card-header">
-        <h2 class="col text-center"> <span class="badge badge-primary">Lista de Vuelos Programados </span>
+        <h2 class="col text-center"> <span class="badge badge-primary">Tus Vuelos Programados </span>
         </h2>
 
     </div>
@@ -24,7 +24,6 @@
                            placeholder="Busqueda por destino...">
                 </div>
             </div>
-            <br>
             <div class="col text-right">
                 <button routerLink="/home/rates" class="btn btn-primary">
                     <i class="fa fa-plus"></i>
@@ -38,22 +37,37 @@
             <thead class="thead-light">
             <tr>
                 <th>#</th>
+                <th scope="col">Aerolinea</th>
                 <th scope="col">Origen</th>
                 <th scope="col">Destino</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Puestos Libres</th>
+                <th scope="col">Disponibilidad</th>
             </tr>
             </thead>
-            <tbody *ngFor=" let fligth of flights">
+            <tbody *ngFor=" let rate of rates">
             <tr>
-                <th> <span class="badge badge-info">{{fligth.idflight}}</span></th>
+                <th> <span class="badge badge-info">{{rate.idrate}}</span></th>
+                <th>{{rate.name | titlecase}} </th>
+                <th><span class="badge badge-primary">{{rate.origin | titlecase}} </span></th>
+                <th><span class=" badge badge-success">{{rate.destination | titlecase}} </span></th>
+                <th><span class="badge badge-info">{{rate.date_schedule | date:'medium' }} </span></th>
+                <th><span class="badge badge-info">{{rate.price | currency}} </span></th>
+                <th><span class="badge badge-primary">{{rate.space_available }} </span></th>
                 <th>
-                    <span class="badge badge-primary">{{fligth.originName | titlecase}} </span></th>
-                <th><span class="badge badge-success">{{fligth.destinationName | titlecase}} </span></th>
+                    <span *ngIf="rate.status=='C'" class="badge badge-warning">Cancelado </span>
+                    <span *ngIf="rate.status=='E'" class="badge badge-default">Expirado </span>
+                    <span *ngIf="rate.status=='A'" class="badge badge-info">Activo </span>
+                </th>
+
+
             </tr>
             </tbody>
         </table>
 
 
-        <div *ngIf="!flights || flights.length==0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+        <div *ngIf="!rates || rates.length==0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
             <h4 class="alert-heading">No hay registros</h4>
             <p>
                 <i class="fa fa-exclamation fa-2x"></i>
